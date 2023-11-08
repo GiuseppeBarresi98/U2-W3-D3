@@ -36,11 +36,13 @@ window.onload = () => {
         img.src = arrBooks[i].img;
         p.innerText = arrBooks[i].price + "$";
         buttonAdd.addEventListener("click", function () {
-          let li = document.createElement("li");
-          li.innerText = arrBooks[i].title;
-          console.log(li);
-          ul.appendChild(li);
-          localStorage.setItem("li", li);
+          arrBooks.forEach((books) => {
+            let li = document.createElement("li");
+            li.innerText = books.title;
+            console.log(li);
+            ul.appendChild(li);
+            localStorage.setItem("li", li);
+          });
         });
 
         button[i].addEventListener("click", function (e) {
