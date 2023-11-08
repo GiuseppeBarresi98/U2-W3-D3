@@ -23,30 +23,30 @@ window.onload = () => {
     .then((arrBooks) => {
       console.log(arrBooks);
 
-      for (i = 0; i < 8; i++) {
+      for (i = 0; i < 50; i++) {
         const div = document.querySelectorAll(".card")[i];
         console.log(div);
         const title = document.querySelectorAll(".card-title")[i];
         const img = document.querySelectorAll(".card-img-top")[i];
         const p = document.querySelectorAll(".card-text")[i];
-        const ul = document.getElementById("ul");
+        const ul = document.querySelector("ul");
         const button = document.getElementsByClassName("scarta");
         const buttonAdd = document.getElementsByClassName("add")[i];
         title.innerText = arrBooks[i].title;
         img.src = arrBooks[i].img;
         p.innerText = arrBooks[i].price + "$";
-        buttonAdd.addEventListener("click", function () {
-          arrBooks.forEach((books) => {
+        buttonAdd.addEventListener(
+          "click",
+          ((index) => () => {
             let li = document.createElement("li");
-            li.innerText = books.title;
+            li.innerText = arrBooks[index].title;
             console.log(li);
             ul.appendChild(li);
-            localStorage.setItem("li", li);
-          });
-        });
-
+            localStorage.setItem("li", li.innerText);
+          })(i)
+        );
         button[i].addEventListener("click", function (e) {
-          e.currentTarget.closest(div.remove());
+          e.target.closest(".card").remove();
         });
       }
     });
