@@ -29,13 +29,22 @@ window.onload = () => {
         const title = document.querySelectorAll(".card-title")[i];
         const img = document.querySelectorAll(".card-img-top")[i];
         const p = document.querySelectorAll(".card-text")[i];
+        const ul = document.getElementById("ul");
+        const button = document.getElementsByClassName("scarta");
+        const buttonAdd = document.getElementsByClassName("add")[i];
         title.innerText = arrBooks[i].title;
         img.src = arrBooks[i].img;
         p.innerText = arrBooks[i].price + "$";
-        const button = document.getElementsByClassName("btn");
-        console.log(button);
-        button[i].addEventListener("click", function () {
-          div.remove();
+        buttonAdd.addEventListener("click", function () {
+          let li = document.createElement("li");
+          li.innerText = arrBooks[i].title;
+          console.log(li);
+          ul.appendChild(li);
+          localStorage.setItem("li", li);
+        });
+
+        button[i].addEventListener("click", function (e) {
+          e.currentTarget.closest(div.remove());
         });
       }
     });
